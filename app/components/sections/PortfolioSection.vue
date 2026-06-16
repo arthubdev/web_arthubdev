@@ -152,58 +152,35 @@
                 hover:bg-white/[0.05]
               "
             >
+              <!-- Imagen -->
               <div
-                class="relative aspect-[16/10] overflow-hidden border-b border-white/10"
-                :style="project.previewStyle"
+                class="
+                  relative
+                  aspect-[16/11]
+                  overflow-hidden
+                  border-b
+                  border-white/10
+                  bg-[#0b0b0b]
+                "
               >
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_65%)]" />
+                <img
+                  v-if="project.imageUrl"
+                  :src="project.imageUrl"
+                  :alt="project.title"
+                  class="h-full w-full object-cover"
+                >
 
                 <div
-                  class="
-                    absolute
-                    inset-x-0
-                    top-0
-                    flex
-                    items-center
-                    justify-between
-                    px-4
-                    py-3
-                    text-[11px]
-                    tracking-[0.24em]
-                    text-white/50
-                  "
-                >
-                  <div class="flex items-center gap-1.5">
-                    <span class="h-2.5 w-2.5 rounded-full bg-white/20" />
-                    <span class="h-2.5 w-2.5 rounded-full bg-white/15" />
-                    <span class="h-2.5 w-2.5 rounded-full bg-white/10" />
-                  </div>
+                  v-else
+                  class="absolute inset-0"
+                  :style="project.fallbackStyle"
+                />
 
-                  <span>{{ project.previewLabel }}</span>
-                </div>
-
-                <div class="absolute inset-x-5 bottom-5">
-                  <p class="text-[11px] uppercase tracking-[0.28em] text-white/55">
-                    {{ project.previewKicker }}
-                  </p>
-
-                  <h3
-                    class="
-                      mt-2
-                      max-w-[14ch]
-                      text-[1.15rem]
-                      font-black
-                      leading-[0.95]
-                      tracking-[-0.04em]
-                      sm:text-[1.35rem]
-                    "
-                  >
-                    {{ project.previewTitle }}
-                  </h3>
-                </div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent_65%)]" />
               </div>
 
-              <div class="flex items-center justify-between gap-4 p-5">
+              <!-- Body -->
+              <div class="p-5">
                 <div class="flex items-start gap-4">
                   <div
                     class="
@@ -223,36 +200,152 @@
                     <component :is="project.icon" :size="20" />
                   </div>
 
-                  <div>
-                    <h4 class="text-base font-semibold text-white">
+                  <div class="min-w-0 flex-1">
+                    <h4 class="text-lg font-semibold text-white">
                       {{ project.title }}
                     </h4>
 
-                    <p class="mt-1 text-sm text-violet-300">
-                      {{ project.categoryLabel }}
-                    </p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                      <span
+                        class="
+                          inline-flex
+                          items-center
+                          rounded-full
+                          border
+                          border-white/10
+                          bg-black/60
+                          px-3
+                          py-1.5
+                          text-xs
+                          font-medium
+                          text-white/80
+                        "
+                      >
+                        {{ project.cliente || 'Sin cliente' }}
+                      </span>
+
+                      <span
+                        class="
+                          inline-flex
+                          items-center
+                          rounded-full
+                          border
+                          border-violet-500/25
+                          bg-violet-500/15
+                          px-3
+                          py-1.5
+                          text-[11px]
+                          font-medium
+                          text-violet-200
+                        "
+                      >
+                        {{ project.categoryLabel }}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                <span
+                <p
                   class="
-                    flex
-                    h-10
-                    w-10
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-violet-500/30
-                    text-violet-300
-                    transition-all
-                    duration-300
-                    group-hover:bg-violet-500/10
+                    mt-4
+                    text-sm
+                    leading-6
+                    text-white/65
+                  "
+                  style="
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
                   "
                 >
-                  <ArrowUpRight :size="18" />
-                </span>
+                  {{ project.descripcion || 'Sin descripción disponible.' }}
+                </p>
+
+                <div class="mt-5 flex items-center justify-between gap-3">
+                  <button
+                    type="button"
+                    class="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      border
+                      border-violet-500/30
+                      bg-violet-500/10
+                      px-4
+                      py-2
+                      text-sm
+                      font-medium
+                      text-violet-200
+                      transition-all
+                      duration-300
+                      hover:border-violet-400/50
+                      hover:bg-violet-500/15
+                      hover:text-white
+                    "
+                    @click="openProject(project)"
+                  >
+                    Leer más
+                    <ArrowUpRight :size="16" />
+                  </button>
+
+                  <div class="flex items-center gap-2">
+                    <a
+                      v-if="project.sitio_url"
+                      :href="project.sitio_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-violet-500/30
+                        text-violet-300
+                        transition-all
+                        duration-300
+                        hover:bg-violet-500/10
+                        hover:text-white
+                      "
+                      aria-label="Abrir sitio web"
+                      title="Abrir sitio web"
+                    >
+                      <ArrowUpRight :size="18" />
+                    </a>
+
+                    <a
+                      v-if="project.github_url"
+                      :href="project.github_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-violet-500/30
+                        text-violet-300
+                        transition-all
+                        duration-300
+                        hover:bg-violet-500/10
+                        hover:text-white
+                      "
+                      aria-label="Abrir GitHub"
+                      title="Abrir GitHub"
+                    >
+                      <Code2 :size="18" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
@@ -299,11 +392,256 @@
         </div>
       </div>
     </AppContainer>
+
+    <!-- Modal -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="opacity-0 scale-95"
+        enter-to-class="opacity-100 scale-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="opacity-100 scale-100"
+        leave-to-class="opacity-0 scale-95"
+      >
+        <div
+          v-if="selectedProject"
+          class="
+            fixed
+            inset-0
+            z-50
+            flex
+            items-center
+            justify-center
+            bg-black/80
+            px-4
+            py-6
+            backdrop-blur-sm
+          "
+          @click.self="closeProject"
+        >
+          <div
+            class="
+              w-full
+              max-w-5xl
+              max-h-[90vh]
+              overflow-hidden
+              rounded-[28px]
+              border
+              border-white/10
+              bg-[#0b0b0b]
+              shadow-[0_0_80px_rgba(0,0,0,0.6)]
+            "
+          >
+            <div class="flex flex-col">
+              <!-- Imagen arriba -->
+              <div class="relative p-4 sm:p-6 pb-0">
+                <div
+                  class="
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white
+                  "
+                >
+                  <img
+                    v-if="selectedProject.imageUrl"
+                    :src="selectedProject.imageUrl"
+                    :alt="selectedProject.title"
+                    class="
+                      block
+                      w-full
+                      max-h-[280px]
+                      object-contain
+                      bg-white
+                      p-4
+                    "
+                  >
+
+                  <div
+                    v-else
+                    class="h-[320px]"
+                    :style="selectedProject.fallbackStyle"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="
+                    absolute
+                    right-8
+                    top-8
+                    rounded-full
+                    border
+                    border-white/10
+                    bg-black/60
+                    p-2
+                    text-white/70
+                    backdrop-blur-md
+                    transition
+                    hover:bg-black/80
+                    hover:text-white
+                  "
+                  @click="closeProject"
+                  aria-label="Cerrar"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <!-- Información abajo -->
+              <div class="max-h-[calc(90vh-420px)] overflow-y-auto px-6 pb-6 sm:px-8 sm:pb-8">
+                <p class="text-xs uppercase tracking-[0.24em] text-violet-300/80">
+                  {{ selectedProject.categoryLabel }}
+                </p>
+
+                <h3 class="mt-3 text-2xl font-black tracking-[-0.04em] text-white sm:text-3xl">
+                  {{ selectedProject.title }}
+                </h3>
+
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span
+                    class="
+                      inline-flex
+                      items-center
+                      rounded-full
+                      border
+                      border-white/10
+                      bg-black/60
+                      px-3
+                      py-1.5
+                      text-xs
+                      font-medium
+                      text-white/80
+                    "
+                  >
+                    {{ selectedProject.cliente || 'Sin cliente' }}
+                  </span>
+
+                  <span
+                    class="
+                      inline-flex
+                      items-center
+                      rounded-full
+                      border
+                      border-violet-500/25
+                      bg-violet-500/15
+                      px-3
+                      py-1.5
+                      text-[11px]
+                      font-medium
+                      text-violet-200
+                    "
+                  >
+                    {{ selectedProject.categoryLabel }}
+                  </span>
+                </div>
+
+                <p class="mt-6 text-sm leading-7 text-white/75">
+                  {{ selectedProject.descripcion || 'Sin descripción disponible.' }}
+                </p>
+
+                <div
+                  v-if="selectedProject.contenido"
+                  class="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                >
+                  <p class="text-xs uppercase tracking-[0.24em] text-white/45">
+                    Detalles
+                  </p>
+
+                  <div
+                    class="
+                      mt-4
+                      space-y-4
+                      text-sm
+                      leading-7
+                      text-white/75
+                    "
+                    v-html="selectedProject.contenido"
+                  />
+                </div>
+
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <a
+                    v-if="selectedProject.sitio_url"
+                    :href="selectedProject.sitio_url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      bg-violet-600
+                      px-4
+                      py-3
+                      text-sm
+                      font-medium
+                      text-white
+                      transition hover:bg-violet-500
+                    "
+                  >
+                    Visitar web
+                    <ArrowUpRight :size="16" />
+                  </a>
+
+                  <a
+                    v-if="selectedProject.github_url"
+                    :href="selectedProject.github_url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      border
+                      border-white/10
+                      px-4
+                      py-3
+                      text-sm
+                      font-medium
+                      text-white
+                      transition hover:bg-white/5
+                    "
+                  >
+                    Ver GitHub
+                    <Code2 :size="16" />
+                  </a>
+
+                  <button
+                    type="button"
+                    class="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-xl
+                      border
+                      border-violet-500/25
+                      bg-violet-500/10
+                      px-4
+                      py-3
+                      text-sm
+                      font-medium
+                      text-violet-200
+                      transition hover:bg-violet-500/15 hover:text-white
+                    "
+                    @click="closeProject"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </AppSection>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch, type Component } from 'vue'
+import { computed, ref, watch, onBeforeUnmount, type Component } from 'vue'
 import {
   ArrowUpRight,
   ChevronUp,
@@ -351,23 +689,18 @@ type PortfolioApiItem = {
 type PortfolioViewItem = PortfolioApiItem & {
   category: CategoryApiItem | null
   categoryLabel: string
-  previewLabel: string
-  previewKicker: string
-  previewTitle: string
   previewStyle: Record<string, string>
+  fallbackStyle: Record<string, string>
+  imageUrl: string | null
   icon: Component
 }
 
-const { data: portfolio } = await useFetch<PortfolioApiItem[]>(
-  '/api/portfolio'
-)
-
-const { data: categories } = await useFetch<CategoryApiItem[]>(
-  '/api/categories'
-)
+const { data: portfolio } = await useFetch<PortfolioApiItem[]>('/api/portfolio')
+const { data: categories } = await useFetch<CategoryApiItem[]>('/api/categories')
 
 const activeFilter = ref<'Todos' | string>('Todos')
 const showAllProjects = ref(false)
+const selectedProject = ref<PortfolioViewItem | null>(null)
 
 const iconMap: Record<string, Component> = {
   building: Building2,
@@ -385,8 +718,8 @@ const iconMap: Record<string, Component> = {
   food: UtensilsCrossed,
   briefcase: BriefcaseBusiness,
   'briefcase-business': BriefcaseBusiness,
-  file: FileText,
-  'file-text': FileText
+  file: FileText
+  , 'file-text': FileText
 }
 
 const normalize = (value: string) => value.toLowerCase().trim()
@@ -421,24 +754,26 @@ const projectsWithMeta = computed<PortfolioViewItem[]>(() => {
       'linear-gradient(135deg, rgba(15,15,15,.95) 0%, rgba(109,40,217,.9) 55%, rgba(9,9,11,.95) 100%)'
     ]
 
+    const fallbackStyle = {
+      background: fallbackGradients[index % fallbackGradients.length]
+    }
+
     const previewStyle = project.imagen_url
       ? {
-          backgroundImage: `url(${project.imagen_url})`,
+          backgroundImage: `url("${project.imagen_url}")`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
         }
-      : {
-          background: fallbackGradients[index % fallbackGradients.length]
-        }
+      : fallbackStyle
 
     return {
       ...project,
       category,
       categoryLabel: category?.nombre || 'Proyecto',
-      previewLabel: project.cliente || category?.nombre || 'ArtHub Dev',
-      previewKicker: category?.nombre || 'Portafolio',
-      previewTitle: project.titulo,
       previewStyle,
+      fallbackStyle,
+      imageUrl: project.imagen_url,
       icon
     }
   })
@@ -470,7 +805,32 @@ const toggleProjects = () => {
   showAllProjects.value = !showAllProjects.value
 }
 
+const openProject = (project: PortfolioViewItem) => {
+  selectedProject.value = project
+}
+
+const closeProject = () => {
+  selectedProject.value = null
+}
+
+const lockBodyScroll = (locked: boolean) => {
+  if (!import.meta.client) {
+    return
+  }
+
+  document.body.style.overflow = locked ? 'hidden' : ''
+  document.documentElement.style.overflow = locked ? 'hidden' : ''
+}
+
+watch(selectedProject, (project) => {
+  lockBodyScroll(Boolean(project))
+}, { immediate: true })
+
 watch(activeFilter, () => {
   showAllProjects.value = false
+})
+
+onBeforeUnmount(() => {
+  lockBodyScroll(false)
 })
 </script>
