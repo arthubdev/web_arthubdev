@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.admin-editor-btn {
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+
+.ProseMirror {
+  min-height: 300px;
+  outline: none;
+  color: white;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.ProseMirror ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+:root {
+  --arthub-primary: #7B2EFF;
+  --arthub-secondary: #A855F7;
+  --arthub-accent: #C084FC;
+
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050505;
+  color: white;
+  font-family: var(--font-body);
+}
+
+/* ==========================
+   ADMIN INPUTS
+========================== */
+
+.admin-input {
+  width: 100%;
+
+  padding: 0.85rem 1rem;
+
+  border-radius: 0.75rem;
+
+  border: 1px solid rgba(255,255,255,.1);
+
+  background: #111111;
+
+  color: #ffffff;
+
+  transition: all .2s ease;
+}
+
+.admin-input::placeholder {
+  color: rgba(255,255,255,.45);
+}
+
+.admin-input:focus {
+  outline: none;
+
+  border-color: #8b5cf6;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(139,92,246,.15);
+}
+
+textarea.admin-input {
+  resize: vertical;
+  min-height: 140px;
+}
