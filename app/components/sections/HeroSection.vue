@@ -124,11 +124,15 @@
               "
             >
               <AppButton variant="primary">
-                Ver proyectos
+                <NuxtLink :to="navigationLinks.find(link => link.label === 'Portafolio')?.href || '/Portafolio'">
+                  Ver proyectos
+                </NuxtLink>
               </AppButton>
 
               <AppButton variant="secondary">
-                Hablemos de tu proyecto
+                <NuxtLink :to="navigationLinks.find(link => link.label === 'Contacto')?.href || '/contacto'">
+                  Hablemos de tu proyecto
+                </NuxtLink>
               </AppButton>
             </div>
           </FadeUp>
@@ -279,6 +283,7 @@ import AppSection from '~/components/ui/AppSection.vue'
 import AppContainer from '~/components/ui/AppContainer.vue'
 import AppBadge from '~/components/ui/AppBadge.vue'
 import AppButton from '~/components/ui/AppButton.vue'
+import { navigationLinks } from '~/constants/navigation'
 
 const { data: settings } = await useFetch('/api/site/settings')
 </script>

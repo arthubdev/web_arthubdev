@@ -172,63 +172,6 @@
                 </component>
               </li>
             </ul>
-
-            <div class="mt-6">
-              <h4 class="text-sm font-medium text-white">
-                Suscríbete
-              </h4>
-              <p class="mt-2 max-w-sm text-sm leading-6 text-white/60">
-                Recibe tips, novedades y recursos sobre desarrollo web.
-              </p>
-
-              <form class="mt-4 flex gap-2" @submit.prevent>
-                <input
-                  type="email"
-                  placeholder="Tu correo electrónico"
-                  class="
-                    min-w-0
-                    flex-1
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-white/[0.03]
-                    px-4
-                    py-3
-                    text-sm
-                    text-white
-                    outline-none
-                    placeholder:text-white/35
-                    transition
-                    focus:border-violet-500/40
-                    focus:bg-white/[0.05]
-                  "
-                >
-
-                <button
-                  type="button"
-                  class="
-                    inline-flex
-                    h-12
-                    w-12
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-gradient-to-r
-                    from-violet-500
-                    to-fuchsia-500
-                    text-white
-                    shadow-[0_0_24px_rgba(123,46,255,0.25)]
-                    transition-all
-                    duration-300
-                    hover:scale-[1.02]
-                  "
-                  aria-label="Suscribirse"
-                >
-                  <ArrowUpRight :size="18" />
-                </button>
-              </form>
-            </div>
           </section>
         </div>
 
