@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {
+  onBeforeUnmount,
+  ref,
+  watch
+} from 'vue'
 
 import NavbarLogo from '~/components/layout/NavbarLogo.vue'
 import NavbarDesktop from '~/components/layout/NavbarDesktop.vue'
@@ -16,10 +20,27 @@ const toggleMenu = () => {
 const closeMenu = () => {
   isMobileMenuOpen.value = false
 }
+
+const lockBodyScroll = (locked: boolean) => {
+  if (!import.meta.client) {
+    return
+  }
+
+  document.body.style.overflow = locked ? 'hidden' : ''
+  document.documentElement.style.overflow = locked ? 'hidden' : ''
+}
+
+watch(isMobileMenuOpen, (isOpen) => {
+  lockBodyScroll(isOpen)
+})
+
+onBeforeUnmount(() => {
+  lockBodyScroll(false)
+})
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
+  <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
     <div class="mx-auto max-w-7xl relative">
       <div
         class="

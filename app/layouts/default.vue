@@ -4,7 +4,7 @@
 
     <TheNavbar />
 
-    <main>
+    <main class="pt-24 sm:pt-32">
       <slot />
     </main>
 
