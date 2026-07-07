@@ -39,7 +39,7 @@ const isActive = (href: string) => {
 
 <template>
   <nav aria-label="Navegación principal">
-    <ul class="hidden lg:flex items-center gap-10">
+    <ul class="hidden lg:flex items-center gap-6 xl:gap-10">
       <li
         v-for="item in navigationLinks"
         :key="item.href"

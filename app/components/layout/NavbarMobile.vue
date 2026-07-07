@@ -6,6 +6,10 @@ defineProps<{
   isOpen: boolean
 }>()
 
+defineEmits<{
+  close: []
+}>()
+
 const route = useRoute()
 
 const isActive = (href: string) => {
@@ -29,13 +33,15 @@ const isActive = (href: string) => {
         left-0
         right-0
         top-full
-        mt-4
+        mt-3
         z-50
-        rounded-[24px]
+        rounded-2xl
+        sm:rounded-[24px]
         border
         border-violet-500/20
         bg-black/95
-        p-5
+        p-4
+        sm:p-5
         backdrop-blur-2xl
         lg:hidden
       "
@@ -48,6 +54,7 @@ const isActive = (href: string) => {
           >
             <NuxtLink
             :to="item.href"
+            @click="$emit('close')"
             class="
                 group
 
@@ -90,10 +97,14 @@ const isActive = (href: string) => {
         </ul>
       </nav>
 
-      <button
+      <NuxtLink
+        to="/#contacto"
         class="
+          flex
           mt-5
           w-full
+          items-center
+          justify-center
           rounded-xl
           bg-violet-600
           py-3
@@ -103,9 +114,10 @@ const isActive = (href: string) => {
           duration-300
           hover:bg-violet-500
         "
+        @click="$emit('close')"
       >
         Hablemos
-      </button>
+      </NuxtLink>
     </div>
   </Transition>
 </template>

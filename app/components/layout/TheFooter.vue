@@ -7,10 +7,10 @@
     </div>
 
     <AppContainer class="relative z-10">
-      <div class="py-10 lg:py-12">
-        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr_1fr] lg:gap-8">
+      <div class="py-10 sm:py-12 lg:py-14">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.15fr_0.85fr_0.85fr_1.15fr] lg:gap-8">
           <!-- Brand -->
-          <section class="space-y-5">
+          <section class="space-y-5 sm:col-span-2 lg:col-span-1">
             <NuxtLink to="/" class="inline-flex items-center gap-3">
               <img
                 v-if="settings?.logo_url"
@@ -27,11 +27,11 @@
               </span>
             </NuxtLink>
 
-            <p class="max-w-sm text-sm leading-7 text-white/65">
+            <p class="max-w-md text-sm leading-7 text-white/65 lg:max-w-sm">
               {{ footerBrandNote }}
             </p>
 
-            <div class="flex items-center gap-3 pt-1">
+            <div class="flex flex-wrap items-center gap-3 pt-1">
               <a
                 v-for="social in footerSocialLinks"
                 :key="social.label"
@@ -64,7 +64,7 @@
           </section>
 
           <!-- Navigation -->
-          <section class="border-t border-white/10 pt-6 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-8 lg:pt-0">
+          <section class="border-t border-white/10 pt-6 sm:border-t-0 sm:pt-0 lg:border-l lg:border-white/10 lg:pl-8">
             <h3 class="text-base font-semibold text-white">
               Navegación
             </h3>
@@ -99,7 +99,7 @@
           </section>
 
           <!-- Services -->
-          <section class="border-t border-white/10 pt-6 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-8 lg:pt-0">
+          <section class="border-t border-white/10 pt-6 sm:border-t-0 sm:pt-0 lg:border-l lg:border-white/10 lg:pl-8">
             <h3 class="text-base font-semibold text-white">
               Servicios
             </h3>
@@ -134,7 +134,7 @@
           </section>
 
           <!-- Contact + Subscribe -->
-          <section class="border-t border-white/10 pt-6 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-8 lg:pt-0">
+          <section class="border-t border-white/10 pt-6 sm:col-span-2 lg:col-span-1 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-8 lg:pt-0">
             <h3 class="text-base font-semibold text-white">
               Contacto
             </h3>
@@ -147,7 +147,7 @@
                 <component
                   :is="item.href ? 'a' : 'div'"
                   v-bind="item.href ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' } : {}"
-                  class="flex items-center gap-3 text-sm text-white/70"
+                  class="flex min-w-0 items-start gap-3 text-sm text-white/70"
                 >
                   <span
                     class="
@@ -166,7 +166,7 @@
                     <component :is="item.icon" :size="16" />
                   </span>
 
-                  <span class="leading-6">
+                  <span class="min-w-0 break-words leading-6">
                     {{ item.label }}
                   </span>
                 </component>
@@ -176,13 +176,13 @@
         </div>
 
         <!-- Bottom bar -->
-        <div class="mt-8 border-t border-white/10 pt-5">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <p class="text-sm text-white/55">
+        <div class="mt-8 border-t border-white/10 pt-5 sm:mt-10">
+          <div class="flex flex-col gap-4 text-center sm:text-left lg:flex-row lg:items-center lg:justify-between">
+            <p class="text-sm leading-6 text-white/55">
               © {{ currentYear }} {{ settings?.nombre_empresa || 'ArtHub Dev' }}. Todos los derechos reservados.
             </p>
 
-            <div class="flex flex-wrap items-center gap-4 text-sm text-white/55">
+            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/55 sm:justify-start lg:justify-end">
               <NuxtLink
                 v-for="item in footerBottomLinks"
                 :key="item.label"

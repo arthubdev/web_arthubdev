@@ -12,20 +12,27 @@ const isMobileMenuOpen = ref(false)
 const toggleMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
+
+const closeMenu = () => {
+  isMobileMenuOpen.value = false
+}
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 px-6 pt-6">
+  <header class="sticky top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
     <div class="mx-auto max-w-7xl relative">
       <div
         class="
           relative
           overflow-visible
-          rounded-[28px]
+          rounded-2xl
+          sm:rounded-[28px]
           border
           border-violet-500/20
           bg-[rgba(5,5,5,0.78)]
-          px-8
+          px-4
+          sm:px-6
+          xl:px-8
           backdrop-blur-2xl
           shadow-[0_0_40px_rgba(123,46,255,0.08),inset_0_1px_0_rgba(255,255,255,0.03)]
         "
@@ -86,7 +93,7 @@ const toggleMenu = () => {
           "
         />
 
-        <div class="relative z-10 flex h-20 items-center justify-between">
+        <div class="relative z-10 flex h-16 items-center justify-between sm:h-20">
           <NavbarLogo />
 
           <NavbarDesktop />
@@ -105,6 +112,7 @@ const toggleMenu = () => {
 
         <NavbarMobile
           :is-open="isMobileMenuOpen"
+          @close="closeMenu"
         />
       </div>
     </div>

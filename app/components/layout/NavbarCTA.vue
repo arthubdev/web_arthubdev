@@ -1,5 +1,6 @@
 <template>
-  <button
+  <NuxtLink
+    to="/#contacto"
     class="
       hidden
       lg:inline-flex
@@ -7,11 +8,13 @@
       items-center
       gap-2
 
-      rounded-2xl
+      rounded-xl
+      xl:rounded-2xl
 
       bg-violet-600
 
-      px-6
+      px-4
+      xl:px-6
       py-3
 
       font-medium
@@ -25,5 +28,5 @@
     <span>
       ↗
     </span>
-  </button>
+  </NuxtLink>
 </template>

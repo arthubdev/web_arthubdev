@@ -24,8 +24,10 @@
           relative
           z-10
           grid
-          gap-12
-          py-16
+          gap-10
+          py-14
+          sm:py-16
+          lg:gap-12
           lg:grid-cols-2
           lg:items-center
           lg:py-24
@@ -54,13 +56,15 @@
           <FadeUp :delay="0.15">
             <h2
               class="
-                mt-8
-                text-[2.1rem]
+                mt-6
+                text-[2rem]
                 font-black
-                leading-[0.95]
-                tracking-[-0.06em]
-                sm:text-[2.9rem]
-                md:text-[3.6rem]
+                leading-tight
+                tracking-[-0.035em]
+                sm:mt-8
+                sm:text-[2.7rem]
+                sm:leading-[0.98]
+                md:text-[3.4rem]
                 lg:text-[4rem]
                 xl:text-[4.4rem]
               "
@@ -100,12 +104,13 @@
             <p
               class="
                 mx-auto
-                mt-8
+                mt-6
                 max-w-xl
                 text-sm
                 leading-7
                 text-white/72
                 sm:text-base
+                md:mt-8
                 lg:mx-0
                 lg:text-[1.05rem]
                 lg:leading-8
@@ -117,7 +122,7 @@
           </FadeUp>
 
           <!-- Contact methods -->
-          <div class="mt-10 space-y-4">
+          <div class="mx-auto mt-8 max-w-xl space-y-4 lg:mx-0 lg:mt-10">
             <FadeUp
               v-for="(method, index) in contactMethods"
               :key="method.title"
@@ -129,9 +134,8 @@
                 class="
                   group
                   flex
-                  items-center
-                  justify-between
-                  gap-4
+                  items-start
+                  gap-3
                   rounded-2xl
                   border
                   border-white/10
@@ -142,14 +146,17 @@
                   duration-300
                   hover:border-violet-500/30
                   hover:bg-white/[0.05]
+                  sm:items-center
+                  sm:justify-between
+                  sm:gap-4
                 "
               >
-                <div class="flex items-center gap-4">
+                <div class="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
                   <div
                     class="
                       flex
-                      h-14
-                      w-14
+                      h-12
+                      w-12
                       shrink-0
                       items-center
                       justify-center
@@ -159,16 +166,18 @@
                       bg-violet-500/10
                       text-violet-300
                       shadow-[0_0_24px_rgba(123,46,255,0.12)]
+                      sm:h-14
+                      sm:w-14
                     "
                   >
                     <component :is="method.icon" :size="22" />
                   </div>
 
-                  <div>
+                  <div class="min-w-0">
                     <h3 class="text-base font-semibold text-white">
                       {{ method.title }}
                     </h3>
-                    <p class="mt-1 text-sm text-white/65">
+                    <p class="mt-1 break-words text-sm leading-6 text-white/65">
                       {{ method.value }}
                     </p>
                   </div>
@@ -177,12 +186,12 @@
                 <ArrowUpRight
                   v-if="method.href"
                   :size="18"
-                  class="text-violet-300 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  class="mt-3 shrink-0 text-violet-300 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:mt-0"
                 />
                 <ArrowUpRight
                   v-else
                   :size="18"
-                  class="text-violet-300"
+                  class="mt-3 shrink-0 text-violet-300 sm:mt-0"
                 />
               </component>
             </FadeUp>
@@ -194,18 +203,22 @@
               v-if="socialLinks.length"
               class="
                 mt-10
+                mx-auto
+                max-w-xl
                 rounded-2xl
                 border
                 border-white/10
                 bg-white/[0.03]
                 p-4
+                text-left
+                lg:mx-0
               "
             >
-              <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-white/55">
+              <h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-white/55 sm:text-sm sm:tracking-[0.2em]">
                 Redes sociales
               </h3>
 
-              <div class="mt-4 flex flex-wrap gap-3">
+              <div class="mt-4 flex flex-wrap gap-2 sm:gap-3">
                 <a
                   v-for="social in socialLinks"
                   :key="social.title"
@@ -216,11 +229,12 @@
                     inline-flex
                     items-center
                     gap-2
+                    break-words
                     rounded-full
                     border
                     border-violet-500/20
                     bg-violet-500/10
-                    px-4
+                    px-3
                     py-2
                     text-sm
                     text-violet-200
@@ -229,6 +243,7 @@
                     hover:border-violet-400/40
                     hover:bg-violet-500/15
                     hover:text-white
+                    sm:px-4
                   "
                 >
                   <component :is="social.icon" :size="16" />
@@ -239,7 +254,7 @@
           </FadeUp>
 
           <FadeUp :delay="0.45">
-            <p class="mt-10 flex items-center justify-center gap-3 text-sm text-white/65 lg:justify-start">
+            <p class="mx-auto mt-8 flex max-w-xl items-center justify-center gap-3 text-balance text-sm leading-6 text-white/65 lg:mx-0 lg:mt-10 lg:justify-start">
               <component
                 :is="trustNote.icon"
                 :size="18"
@@ -254,18 +269,22 @@
         </div>
 
         <!-- Right form -->
-        <FadeUp :delay="0.2">
+        <FadeUp
+          :delay="0.2"
+          class="min-w-0"
+        >
           <div
             class="
               relative
               overflow-hidden
-              rounded-[32px]
+              rounded-3xl
               border
               border-violet-500/20
               bg-[rgba(10,10,12,0.78)]
-              p-5
+              p-4
               shadow-[0_0_60px_rgba(123,46,255,0.10)]
               backdrop-blur-2xl
+              sm:rounded-[32px]
               sm:p-7
               lg:p-8
             "
@@ -286,12 +305,12 @@
             />
 
             <div class="relative z-10">
-              <div class="flex items-start gap-4">
+              <div class="flex items-start gap-3 sm:gap-4">
                 <div
                   class="
                     flex
-                    h-14
-                    w-14
+                    h-12
+                    w-12
                     shrink-0
                     items-center
                     justify-center
@@ -301,6 +320,8 @@
                     bg-violet-500/10
                     text-violet-300
                     shadow-[0_0_24px_rgba(123,46,255,0.12)]
+                    sm:h-14
+                    sm:w-14
                   "
                 >
                   <component
@@ -309,17 +330,17 @@
                   />
                 </div>
 
-                <div>
-                  <h3 class="text-xl font-semibold text-white sm:text-2xl">
+                <div class="min-w-0">
+                  <h3 class="text-lg font-semibold leading-tight text-white sm:text-2xl">
                     {{ formFields.header.title }}
                   </h3>
-                  <p class="mt-1 text-sm text-white/65 sm:text-base">
+                  <p class="mt-1 text-sm leading-6 text-white/65 sm:text-base">
                     {{ formFields.header.description }}
                   </p>
                 </div>
               </div>
 
-              <form class="mt-8 space-y-4" @submit.prevent="submitContact">
+              <form class="mt-6 space-y-4 sm:mt-8" @submit.prevent="submitContact">
                 <div class="grid gap-4 md:grid-cols-2">
                   <div class="relative">
                     <component
@@ -333,12 +354,12 @@
                       :placeholder="formFields.name.placeholder"
                       class="
                         w-full
-                        rounded-2xl
+                        rounded-xl
                         border
                         border-white/10
                         bg-black/25
                         px-12
-                        py-4
+                        py-3.5
                         text-sm
                         text-white
                         outline-none
@@ -346,6 +367,8 @@
                         placeholder:text-white/35
                         focus:border-violet-500/40
                         focus:bg-black/35
+                        sm:rounded-2xl
+                        sm:py-4
                       "
                     >
                   </div>
@@ -362,12 +385,12 @@
                       :placeholder="formFields.email.placeholder"
                       class="
                         w-full
-                        rounded-2xl
+                        rounded-xl
                         border
                         border-white/10
                         bg-black/25
                         px-12
-                        py-4
+                        py-3.5
                         text-sm
                         text-white
                         outline-none
@@ -375,6 +398,8 @@
                         placeholder:text-white/35
                         focus:border-violet-500/40
                         focus:bg-black/35
+                        sm:rounded-2xl
+                        sm:py-4
                       "
                     >
                   </div>
@@ -392,12 +417,12 @@
                     :placeholder="formFields.company.placeholder"
                     class="
                       w-full
-                      rounded-2xl
+                      rounded-xl
                       border
                       border-white/10
                       bg-black/25
                       px-12
-                      py-4
+                      py-3.5
                       text-sm
                       text-white
                       outline-none
@@ -405,6 +430,8 @@
                       placeholder:text-white/35
                       focus:border-violet-500/40
                       focus:bg-black/35
+                      sm:rounded-2xl
+                      sm:py-4
                     "
                   >
                 </div>
@@ -421,12 +448,12 @@
                     :placeholder="formFields.phone.placeholder"
                     class="
                       w-full
-                      rounded-2xl
+                      rounded-xl
                       border
                       border-white/10
                       bg-black/25
                       px-12
-                      py-4
+                      py-3.5
                       text-sm
                       text-white
                       outline-none
@@ -434,6 +461,8 @@
                       placeholder:text-white/35
                       focus:border-violet-500/40
                       focus:bg-black/35
+                      sm:rounded-2xl
+                      sm:py-4
                     "
                   >
                 </div>
@@ -451,7 +480,7 @@
                     class="
                       w-full
                       resize-none
-                      rounded-2xl
+                      rounded-xl
                       border
                       border-white/10
                       bg-black/25
@@ -464,6 +493,7 @@
                       placeholder:text-white/35
                       focus:border-violet-500/40
                       focus:bg-black/35
+                      sm:rounded-2xl
                     "
                   />
                 </div>
@@ -508,13 +538,13 @@
                     items-center
                     justify-center
                     gap-3
-                    rounded-2xl
+                    rounded-xl
                     bg-gradient-to-r
                     from-violet-500
                     to-fuchsia-500
-                    px-6
-                    py-4
-                    text-base
+                    px-5
+                    py-3.5
+                    text-sm
                     font-semibold
                     text-white
                     shadow-[0_0_35px_rgba(123,46,255,0.28)]
@@ -523,6 +553,10 @@
                     hover:scale-[1.01]
                     hover:shadow-[0_0_45px_rgba(123,46,255,0.36)]
                     disabled:opacity-60
+                    sm:rounded-2xl
+                    sm:px-6
+                    sm:py-4
+                    sm:text-base
                   "
                   :disabled="loading"
                 >
@@ -530,7 +564,7 @@
                   <component :is="formFields.submit.icon" :size="18" />
                 </button>
 
-                <p class="flex items-center justify-center gap-2 text-xs text-white/50">
+                <p class="flex items-center justify-center gap-2 text-center text-xs leading-5 text-white/50">
                   <component :is="formFields.secure.icon" :size="14" />
                   {{ formFields.secure.text }}
                 </p>
